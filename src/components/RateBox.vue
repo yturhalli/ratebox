@@ -1,16 +1,19 @@
 <template>
   <div class="rate-box">
-    <span
-      v-for="star in 5"
-      :key="star"
-      class="star"
-      :class="{ filled: star <= (hoveredStar || internalValue) }"
-      @mouseover="onMouseOver(star)"
-      @mouseout="onMouseOut"
-      @click="onClick(star)"
-    >
-      ★
-    </span>
+    <template v-if="editable">
+
+      <span v-for="star in 5" :key="star" class="star editable"
+        :class="{ filled: star <= (hoveredStar || internalValue) }" @mouseover="onMouseOver(star)"
+        @mouseout="onMouseOut" @click="onClick(star)">
+        ★
+      </span>
+    </template>
+    <template v-else>
+
+      <span v-for="star in 5" :key="star" class="star" :class="{ filled: star <= internalValue }">
+        ★
+      </span>
+    </template>
   </div>
 </template>
 
@@ -70,18 +73,21 @@ const onClick = (star) => {
 .rate-box {
   display: inline-flex;
 }
+
 .star {
   font-size: 2rem;
   color: #ccc;
+}
+
+.star.editable {
   cursor: pointer;
 }
+
 .star.filled {
   color: #f39c12;
 }
-.star:hover {
+
+.star.editable:hover {
   color: #f39c12;
-}
-.star[editable="false"] {
-  cursor: default;
 }
 </style>

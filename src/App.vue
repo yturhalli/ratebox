@@ -8,8 +8,8 @@
     <p>Selected Rating: {{ withoutDefaultRating }}</p>
 
     <h3>Not editable</h3>
-    <RateBox :modelValue="4" :editable="false" />
-    <p>Non-editable Rating: 4</p>
+    <RateBox :modelValue="2" :editable="false" />
+    <p>Non-editable Rating: 2</p>
   </div>
 </template>
 
